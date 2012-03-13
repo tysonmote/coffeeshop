@@ -12,10 +12,7 @@ class Coffeeshop
     k = key( digest( coffee ) )
     unless js = REDIS.get( k )
       js = CoffeeScript.compile( coffee )
-      REDIS.multi do
-        REDIS.set( k, js )
-        REDIS.expire( k, EXPIRE )
-      end
+      REDIS.setex( k, EXPIRE, js )
     end
     js
   end
