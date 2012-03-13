@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require "bundler"
+require "sinatra"
+require_relative "../lib/coffeeshop"
+
+get /\/(.+)/ do
+  content_type "text/javascript"
+  path = params[:captures].first
+
+  if File.exists?( path )
+    Coffeeshop.to_js path
+  else
+    raise Sinatra::NotFound
+  end
+end
