@@ -3,9 +3,11 @@ require "bundler"
 require "sinatra"
 require_relative "../lib/coffeeshop"
 
-set :static, true
-set :public_folder, ENV["PWD"]
-set :root, ENV["PWD"]
+configure do
+  set :static, true
+  set :public_folder, ENV["PWD"]
+  set :root, ENV["PWD"]
+end
 
 not_found do
   path = settings.root + env["PATH_INFO"]
