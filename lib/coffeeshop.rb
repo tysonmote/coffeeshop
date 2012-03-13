@@ -5,15 +5,16 @@ require_relative "coffeeshop/version"
 
 class Coffeeshop
   REDIS = Redis.new
-  EXPIRE = 24 * 60 * 60
+  EXPIRE = 60 * 60
 
   def self.to_js( path )
     coffee = File.read( path )
     k = key( digest( coffee ) )
     unless js = REDIS.get( k )
       js = CoffeeScript.compile( coffee )
-      REDIS.setex( k, EXPIRE, js )
+      REDIS.set( k, js )
     end
+    REDIS.expire( k, EXPIRE )
     js
   end
 
