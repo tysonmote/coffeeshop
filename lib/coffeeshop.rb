@@ -3,7 +3,7 @@ require "digest/md5"
 require "redis"
 require_relative "coffeeshop/version"
 
-class Coffeeshop
+module Coffeeshop
   REDIS = Redis.new
   EXPIRE = 60 * 60
 
