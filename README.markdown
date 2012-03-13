@@ -19,3 +19,9 @@
     -x                               turn on the mutex lock (default is off)
 
   [sinatra]: http://www.sinatrarb.com/
+
+## FAQ
+
+### Is this web-scale?
+
+No.
