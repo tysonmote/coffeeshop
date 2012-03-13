@@ -10,21 +10,22 @@ configure do
   set :run, true
 end
 
-not_found do
-  path = settings.root + env["PATH_INFO"]
+get %r{/.+.js$} do
+  path = settings.root + request.path_info
   coffee_path = path.sub( /\.js$/, ".coffee" )
-
-  if path =~ /\.js$/ && File.exists?( coffee_path )
+  if File.exists?( coffee_path )
     content_type "text/javascript"
     Coffeeshop.to_js( coffee_path )
   else
-    if path =~ /\/$/
-      index_path = "#{path}index.html"
-    else
-      index_path = "#{path}/index.html"
-    end
-    if File.exists?( index_path )
-      File.read( index_path )
-    end
+    raise Sinatra::NotFound
+  end
+end
+
+not_found do
+  index_path = settings.root + env["PATH_INFO"]
+  index_path += "/" unless index_path =~ /\/$/
+  index_path = "#{index_path}/index.html"
+  if File.exists?( index_path )
+    File.read( index_path )
   end
 end
