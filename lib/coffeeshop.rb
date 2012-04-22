@@ -1,3 +1,4 @@
+require "bundler"
 require "coffee-script"
 require "digest/md5"
 require "redis"
