@@ -27,3 +27,4 @@ module Coffeeshop
     "coffeeshop:#{digest}"
   end
 end
+

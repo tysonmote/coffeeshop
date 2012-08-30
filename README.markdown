@@ -1,8 +1,12 @@
 # coffeeshop
 
-`coffeeshop` is a simple Sinatra app that serves up all CoffeeScript files in a directory as JavaScript. For example, if you had `/my/project/src/rad.coffee`, and ran `coffeeshop` in `/my/project` you could hit `http://localhost:4567/src/rad.js` and it will be served up as JavaScript.
+`coffeeshop` is a simple Sinatra app that serves up all CoffeeScript files in
+a directory as JavaScript. For example, if you had
+`/my/project/src/rad.coffee`, and ran `coffeeshop` in `/my/project` you could
+hit `http://localhost:4567/src/rad.js` and it will be served up as JavaScript.
 
-`coffeeshop` uses Redis for simple 1-hour caching of the generated JavaScript to keep things snappy.
+`coffeeshop` uses Redis for simple 1-hour caching of the generated JavaScript
+to keep things snappy.
 
 ## Usage
 
@@ -19,3 +23,4 @@
     -x                               turn on the mutex lock (default is off)
 
   [sinatra]: http://www.sinatrarb.com/
+
